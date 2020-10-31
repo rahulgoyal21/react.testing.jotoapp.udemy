@@ -6,7 +6,7 @@ import { actionTypes } from '../actions';
  * @returns {boolean} - new success state
  */
 
-export const successReducer = (state = false, action) => {
+export const success = (state = false, action) => {
   const { type } = action;
   switch (type) {
     case actionTypes.CORRECT_GUESS:

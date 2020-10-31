@@ -23,7 +23,7 @@ const Input = ({ success }) => {
 };
 
 const mapStateToProps = (state) => ({
-  success: state.successReducer
+  success: state.success
 });
 
 export default connect(mapStateToProps)(Input);
