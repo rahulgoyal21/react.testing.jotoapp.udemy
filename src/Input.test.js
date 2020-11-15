@@ -6,6 +6,9 @@ import Input from './Input';
 
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
+  /**
+   * there are two higher order components wrapping a component after calling connect. The first level of HOC allows you to access the props, and the second level allows you to access the contents of the component that was called with the output of connect.
+   */
   const wrapper = shallow(<Input store={store} />)
     .dive()
     .dive();
@@ -53,3 +56,21 @@ describe('render', () => {
 });
 
 describe('update state', () => {});
+
+describe('redux props', () => {
+  test('has success piece of state as prop', () => {
+    // const success = true;
+    // const wrapper = setup({ success });
+    const store = storeFactory({ success: true });
+    /**
+     * there are two higher order components wrapping a component after calling connect. The first level of HOC allows you to access the props, and the second level allows you to access the contents of the component that was called with the output of connect.
+     */
+    const wrapper = shallow(<Input store={store} />).dive();
+    expect(wrapper.props().success).toBe(true);
+  });
+  test('"guessword" action creator is a function prop', () => {
+    const store = storeFactory();
+    const wrapper = shallow(<Input store={store} />).dive();
+    expect(wrapper.props().guessWord).toBeInstanceOf(Function);
+  });
+});
